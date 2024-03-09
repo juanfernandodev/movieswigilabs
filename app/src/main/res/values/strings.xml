@@ -6,4 +6,6 @@
     <string name="explore_more_movies">Explore more movies</string>
     <string name="your_favorites">Your favorites</string>
     <string name="unknown_error">There was an error</string>
+    <string name="movie_s_image">Movie\'s Image</string>
+    <string name="error_showing_movie_don_t_found">Error showing movie, don\'t found</string>
 </resources>

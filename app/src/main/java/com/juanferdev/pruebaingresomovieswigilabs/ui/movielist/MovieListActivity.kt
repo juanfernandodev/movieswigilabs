@@ -1,5 +1,6 @@
 package com.juanferdev.pruebaingresomovieswigilabs.ui.movielist
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -9,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.juanferdev.pruebaingresomovieswigilabs.R
 import com.juanferdev.pruebaingresomovieswigilabs.api.UiState
 import com.juanferdev.pruebaingresomovieswigilabs.databinding.ActivityMovieListBinding
+import com.juanferdev.pruebaingresomovieswigilabs.ui.detailmovie.DetailMovieActivity
+import com.juanferdev.pruebaingresomovieswigilabs.ui.detailmovie.MOVIE_KEY
 
 
 class MovieListActivity : AppCompatActivity() {
@@ -25,11 +28,10 @@ class MovieListActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerAllMovies() {
-        adapterAllMovies.setOnItemClickListener { _ ->
-            //todo: start activity detail movie and to pass movie
-            /*val intent = Intent(this, DogDetailActivity::class.java)
-            intent.putExtra(DOG_KEY, dog)
-            startActivity(intent)*/
+        adapterAllMovies.setOnItemClickListener { movie ->
+            val intent = Intent(this, DetailMovieActivity::class.java)
+            intent.putExtra(MOVIE_KEY, movie)
+            startActivity(intent)
         }
 
         val recycler = binding.recycleAllMovies

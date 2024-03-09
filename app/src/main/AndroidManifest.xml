@@ -15,6 +15,10 @@
         android:theme="@style/Theme.PruebaIngresoMoviesWigilabs"
         tools:targetApi="31">
         <activity
+            android:name=".ui.detailmovie.DetailMovieActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.movielist.MovieListActivity" />
+        <activity
             android:name=".ui.movielist.MovieListActivity"
             android:exported="true">
             <intent-filter>

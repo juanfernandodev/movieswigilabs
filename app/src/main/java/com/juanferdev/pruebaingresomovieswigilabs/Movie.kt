@@ -1,5 +1,9 @@
 package com.juanferdev.pruebaingresomovieswigilabs
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Movie(
     val id: Long,
     val title: String,
@@ -8,4 +12,4 @@ data class Movie(
     val voteAverage: Double,
     val popularity: Double,
     val releaseDate: String
-)
+) : Parcelable
