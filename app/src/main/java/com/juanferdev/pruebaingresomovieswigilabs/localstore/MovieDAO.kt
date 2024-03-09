@@ -1,6 +1,7 @@
 package com.juanferdev.pruebaingresomovieswigilabs.localstore
 
 import androidx.room.Dao
+import androidx.room.Insert
 import androidx.room.Query
 
 @Dao
@@ -11,4 +12,9 @@ interface MovieDAO {
 
     @Query("SELECT * FROM movie WHERE isFavorite = 1")
     suspend fun getFavoriteMovies(): List<MovieEntity>
+
+    @Insert
+    suspend fun insertMovies(movies: List<MovieEntity>)
+
+
 }

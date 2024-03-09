@@ -16,7 +16,7 @@ private val retrofit = Retrofit.Builder()
 
 fun interface ApiService {
     @GET(GET_ALL_MOVIES_URL)
-    suspend fun getAllDogs(): MovieListApiResponse
+    suspend fun getAllMovies(): MovieListApiResponse
 
 }
 

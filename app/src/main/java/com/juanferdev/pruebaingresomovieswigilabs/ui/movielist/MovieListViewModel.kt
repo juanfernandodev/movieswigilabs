@@ -8,8 +8,9 @@ import com.juanferdev.pruebaingresomovieswigilabs.Movie
 import com.juanferdev.pruebaingresomovieswigilabs.api.UiState
 import kotlinx.coroutines.launch
 
-class MovieListViewModel(private val moviesRepository: MoviesRepository = MoviesRepository()) :
-    ViewModel() {
+class MovieListViewModel(
+    private val moviesRepository: MoviesRepository
+) : ViewModel() {
 
     private var _uiState: MutableLiveData<UiState<List<Movie>>> = MutableLiveData()
     val uiState: LiveData<UiState<List<Movie>>>
@@ -22,7 +23,7 @@ class MovieListViewModel(private val moviesRepository: MoviesRepository = Movies
     private fun getAllMovies() {
         viewModelScope.launch {
             _uiState.value = UiState.Loading()
-            _uiState.value = moviesRepository.getAllMovies()
+            _uiState.value = moviesRepository.getMovies()
         }
     }
 }

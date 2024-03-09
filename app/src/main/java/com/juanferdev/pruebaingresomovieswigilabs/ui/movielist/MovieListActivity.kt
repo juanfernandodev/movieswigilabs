@@ -1,11 +1,14 @@
 package com.juanferdev.pruebaingresomovieswigilabs.ui.movielist
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juanferdev.pruebaingresomovieswigilabs.R
 import com.juanferdev.pruebaingresomovieswigilabs.api.UiState
@@ -13,12 +16,25 @@ import com.juanferdev.pruebaingresomovieswigilabs.databinding.ActivityMovieListB
 import com.juanferdev.pruebaingresomovieswigilabs.ui.detailmovie.DetailMovieActivity
 import com.juanferdev.pruebaingresomovieswigilabs.ui.detailmovie.MOVIE_KEY
 
+class MovieListViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
+
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(MovieListViewModel::class.java))
+            return MovieListViewModel(MoviesRepository(context)) as T
+
+        throw IllegalArgumentException("Unknown class name")
+    }
+}
 
 class MovieListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMovieListBinding
     private val adapterAllMovies = AllMoviesAdapter()
-    private val movieListViewModel: MovieListViewModel by viewModels()
+    private val movieListViewModel: MovieListViewModel by viewModels {
+        MovieListViewModelFactory(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMovieListBinding.inflate(layoutInflater)
@@ -64,7 +80,7 @@ class MovieListActivity : AppCompatActivity() {
     }
 
     private fun showAlertDialog(messageId: Int) {
-        AlertDialog.Builder(this).setTitle(R.string.unknown_error).setMessage(messageId)
+        AlertDialog.Builder(this).setTitle(R.string.there_was_error).setMessage(messageId)
             .setPositiveButton(android.R.string.ok) { dialog, _ ->
                 dialog.dismiss()
             }.create().show()

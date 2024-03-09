@@ -1,5 +1,6 @@
 package com.juanferdev.pruebaingresomovieswigilabs.api
 
+import android.util.Log
 import com.juanferdev.pruebaingresomovieswigilabs.R
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +16,8 @@ suspend fun <T> makeNetworkCall(
         try {
             UiState.Success(call())
         } catch (e: Exception) {
-            UiState.Error(R.string.unknown_error)
+            Log.e("makeNetworkCall", e.message ?: String())
+            UiState.Error(R.string.there_was_error)
         }
 
     }

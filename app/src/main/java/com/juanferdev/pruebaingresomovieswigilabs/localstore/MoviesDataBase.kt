@@ -14,11 +14,11 @@ abstract class MoviesDataBase : RoomDatabase() {
 
         private var INSTACE: MoviesDataBase? = null
 
-        fun instanciarBaseDeDatos(contexto: Context): MoviesDataBase {
+        fun instance(context: Context): MoviesDataBase {
 
             return INSTACE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
-                    contexto,
+                    context,
                     MoviesDataBase::class.java, "MoviesDataBase"
                 ).fallbackToDestructiveMigration().build()
                 INSTACE = instance
