@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_item_movie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_movie"
+            android:layout_width="180dp"
+            android:layout_height="250dp"
+            android:contentDescription="@string/image_of_the_movie"
+            tools:src="@drawable/descarga"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_movie"
+            android:textStyle="bold"
+            tools:text="American History X" />
+
+        <TextView
+            android:id="@+id/description_movie"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4dp"
+            app:layout_constraintStart_toStartOf="@id/image_movie"
+            app:layout_constraintEnd_toEndOf="@id/image_movie"
+            app:layout_constraintTop_toBottomOf="@id/title_movie"
+            tools:text="In a world where superpowered people are heavily policed by robots, an ex-con teams up with a drug lord he despises to protect a teen from a corrupt cop." />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
