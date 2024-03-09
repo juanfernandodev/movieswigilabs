@@ -9,6 +9,7 @@ import com.juanferdev.pruebaingresomovieswigilabs.api.UiState
 import com.juanferdev.pruebaingresomovieswigilabs.api.dtos.MovieDTO
 import com.juanferdev.pruebaingresomovieswigilabs.api.dtos.MovieDTOMapper
 import com.juanferdev.pruebaingresomovieswigilabs.api.makeNetworkCall
+import com.juanferdev.pruebaingresomovieswigilabs.localstore.MovieEntity
 import com.juanferdev.pruebaingresomovieswigilabs.localstore.MovieEntityMapper
 import com.juanferdev.pruebaingresomovieswigilabs.localstore.MoviesDataBase
 import kotlinx.coroutines.CoroutineDispatcher
@@ -63,6 +64,19 @@ class MoviesRepository(
         withContext(dispatcherIO) {
             val movieEntityList = MovieDTOMapper().fromMovieDTOListToMovieEntityList(movieListDTO)
             MoviesDataBase.instance(context).moviesDAO().insertMovies(movieEntityList)
+        }
+    }
+
+    suspend fun updateMovie(movie: MovieEntity): UiState<Movie> {
+        return withContext(dispatcherIO) {
+            try {
+                MoviesDataBase.instance(context).moviesDAO().updateMovie(movie)
+                val movieUpdate = MovieEntityMapper().fromMovieEntityToMovie(movie)
+                UiState.Success(movieUpdate)
+            } catch (e: Exception) {
+                Log.e("Error", e.message ?: String())
+                UiState.Error(R.string.there_was_error)
+            }
         }
     }
 

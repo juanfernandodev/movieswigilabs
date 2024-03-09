@@ -5,12 +5,22 @@ import com.juanferdev.pruebaingresomovieswigilabs.Movie
 class MovieEntityMapper {
 
     fun fromMovieEntityListToMovieList(movieEntities: List<MovieEntity>): List<Movie> {
-        val isFavorite = 1
         return movieEntities.map { entity ->
-            Movie(
-                entity.id, entity.title, entity.overview, entity.posterPath, entity.voteAverage,
-                entity.popularity, entity.releaseDate, entity.isFavorite == isFavorite
-            )
+            fromMovieEntityToMovie(entity)
         }
+    }
+
+    fun fromMovieEntityToMovie(movieEntity: MovieEntity): Movie {
+        val isFavorite = 1
+        return Movie(
+            movieEntity.id,
+            movieEntity.title,
+            movieEntity.overview,
+            movieEntity.posterPath,
+            movieEntity.voteAverage,
+            movieEntity.popularity,
+            movieEntity.releaseDate,
+            movieEntity.isFavorite == isFavorite
+        )
     }
 }

@@ -8,4 +8,5 @@
     <string name="there_was_error">There was an error</string>
     <string name="movie_s_image">Movie\'s Image</string>
     <string name="error_showing_movie_don_t_found">Error showing movie, don\'t found</string>
+    <string name="save_as_favorite">Save as Favorite</string>
 </resources>

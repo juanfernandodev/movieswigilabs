@@ -3,6 +3,7 @@ package com.juanferdev.pruebaingresomovieswigilabs.localstore
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface MovieDAO {
@@ -15,6 +16,9 @@ interface MovieDAO {
 
     @Insert
     suspend fun insertMovies(movies: List<MovieEntity>)
+
+    @Update
+    suspend fun updateMovie(movie: MovieEntity)
 
 
 }

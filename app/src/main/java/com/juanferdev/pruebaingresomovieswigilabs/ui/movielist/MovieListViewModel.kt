@@ -16,11 +16,7 @@ class MovieListViewModel(
     val uiState: LiveData<UiState<List<Movie>>>
         get() = _uiState
 
-    init {
-        getAllMovies()
-    }
-
-    private fun getAllMovies() {
+    fun getAllMovies() {
         viewModelScope.launch {
             _uiState.value = UiState.Loading()
             _uiState.value = moviesRepository.getMovies()
