@@ -48,11 +48,12 @@ dependencies {
     val coreVersion = "1.12.0"
     val appCompactVersion = "1.6.1"
     val materialDesignVersion = "1.11.0"
-    val constraintLayourVersion = "2.1.4"
+    val constraintLayoutVersion = "2.1.4"
+    val roomVersion = "2.6.1"
     implementation("androidx.core:core-ktx:$coreVersion")
     implementation("androidx.appcompat:appcompat:$appCompactVersion")
     implementation("com.google.android.material:material:$materialDesignVersion")
-    implementation("androidx.constraintlayout:constraintlayout:$constraintLayourVersion")
+    implementation("androidx.constraintlayout:constraintlayout:$constraintLayoutVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
     implementation("androidx.activity:activity-ktx:$activityVersion")
     //Coil Images
@@ -60,6 +61,12 @@ dependencies {
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:converter-moshi:$retrofitVersion")
+
+    //Room
+    implementation("androidx.room:room-ktx:$roomVersion")
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+
+
     testImplementation("junit:junit:$jUnitVersion")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
