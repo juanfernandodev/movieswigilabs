@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("kotlin-parcelize")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -51,6 +52,7 @@ dependencies {
     val materialDesignVersion = "1.11.0"
     val constraintLayoutVersion = "2.1.4"
     val roomVersion = "2.6.1"
+    val hiltVersion = "2.44"
     implementation("androidx.core:core-ktx:$coreVersion")
     implementation("androidx.appcompat:appcompat:$appCompactVersion")
     implementation("com.google.android.material:material:$materialDesignVersion")
@@ -67,6 +69,10 @@ dependencies {
     implementation("androidx.room:room-ktx:$roomVersion")
     annotationProcessor("androidx.room:room-compiler:$roomVersion")
     kapt("androidx.room:room-compiler:$roomVersion")
+
+    //Dependency Injection with hilt
+    implementation("com.google.dagger:hilt-android:$hiltVersion")
+    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
 
 
     testImplementation("junit:junit:$jUnitVersion")
