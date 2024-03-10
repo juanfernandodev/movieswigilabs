@@ -1,6 +1,5 @@
 package com.juanferdev.pruebaingresomovieswigilabs.ui.movielist
 
-import android.util.Log
 import com.juanferdev.pruebaingresomovieswigilabs.Movie
 import com.juanferdev.pruebaingresomovieswigilabs.R
 import com.juanferdev.pruebaingresomovieswigilabs.api.ApiService
@@ -13,6 +12,9 @@ import com.juanferdev.pruebaingresomovieswigilabs.localstore.MovieEntity
 import com.juanferdev.pruebaingresomovieswigilabs.localstore.MovieEntityMapper
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 
 class MoviesRepository @Inject constructor(
@@ -21,32 +23,29 @@ class MoviesRepository @Inject constructor(
     private val movieDAO: MovieDAO
 ) {
 
-    suspend fun getMovies(): UiState<List<Movie>> {
-        return withContext(dispatcherIO) {
-            when (val allMoviesLocalResponse = getLocalMovies()) {
-                is UiState.Error -> {
-                    allMoviesLocalResponse
-                }
-
-                is UiState.Success -> {
-                    if (allMoviesLocalResponse.data.isEmpty()) {
-                        getApiMovies()
-                    } else {
-                        allMoviesLocalResponse
-                    }
-                }
-
-                else -> UiState.Error(R.string.there_was_error)
+    val getMoviesFlow: Flow<UiState<List<Movie>>> = flow {
+        when (val allMoviesLocalResponse = getLocalMovies()) {
+            is UiState.Error -> {
+                emit(allMoviesLocalResponse)
             }
+
+            is UiState.Success -> {
+                if (allMoviesLocalResponse.data.isEmpty()) {
+                    emit(getApiMovies())
+                } else {
+                    emit(allMoviesLocalResponse)
+                }
+            }
+
+            else -> emit(UiState.Error(R.string.there_was_error))
         }
-    }
+    }.flowOn(dispatcherIO)
 
     private suspend fun getLocalMovies(): UiState<List<Movie>> {
         return try {
             val localMoviesEntity = movieDAO.getAllMovies()
             UiState.Success(MovieEntityMapper().fromMovieEntityListToMovieList(localMoviesEntity))
         } catch (e: Exception) {
-            Log.i("Error", e.message ?: String())
             UiState.Error(R.string.there_was_error)
         }
     }
@@ -61,10 +60,8 @@ class MoviesRepository @Inject constructor(
     }
 
     private suspend fun insertMoviesLocally(movieListDTO: List<MovieDTO>) {
-        withContext(dispatcherIO) {
-            val movieEntityList = MovieDTOMapper().fromMovieDTOListToMovieEntityList(movieListDTO)
-            movieDAO.insertMovies(movieEntityList)
-        }
+        val movieEntityList = MovieDTOMapper().fromMovieDTOListToMovieEntityList(movieListDTO)
+        movieDAO.insertMovies(movieEntityList)
     }
 
     suspend fun updateMovie(movie: MovieEntity): UiState<Movie> {
@@ -74,7 +71,6 @@ class MoviesRepository @Inject constructor(
                 val movieUpdate = MovieEntityMapper().fromMovieEntityToMovie(movie)
                 UiState.Success(movieUpdate)
             } catch (e: Exception) {
-                Log.e("Error", e.message ?: String())
                 UiState.Error(R.string.there_was_error)
             }
         }

@@ -6,6 +6,9 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juanferdev.pruebaingresomovieswigilabs.Movie
 import com.juanferdev.pruebaingresomovieswigilabs.R
@@ -14,6 +17,7 @@ import com.juanferdev.pruebaingresomovieswigilabs.databinding.ActivityMovieListB
 import com.juanferdev.pruebaingresomovieswigilabs.ui.detailmovie.DetailMovieActivity
 import com.juanferdev.pruebaingresomovieswigilabs.ui.detailmovie.MOVIE_KEY
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MovieListActivity : AppCompatActivity() {
@@ -27,13 +31,13 @@ class MovieListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMovieListBinding.inflate(layoutInflater)
         initRecyclers()
-        initObserver()
+        initObserverFlow()
         setContentView(binding.root)
     }
 
-    override fun onResume() {
-        super.onResume()
-        movieListViewModel.getAllMovies()
+    override fun onStart() {
+        super.onStart()
+        movieListViewModel.getAllMoviesFlow()
     }
 
     private fun initRecyclers() {
@@ -79,24 +83,30 @@ class MovieListActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun initObserver() {
-        movieListViewModel.uiState.observe(this) { uiState ->
-            when (uiState) {
-                is UiState.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                }
+    private fun initObserverFlow() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                movieListViewModel.uiStateFlow.collect { uiState ->
+                    when (uiState) {
+                        is UiState.Loading -> {
+                            binding.progressBar.visibility = View.VISIBLE
+                        }
 
-                is UiState.Error -> {
-                    binding.progressBar.visibility = View.GONE
-                    showAlertDialog(uiState.messageId)
-                }
+                        is UiState.Error -> {
+                            binding.progressBar.visibility = View.GONE
+                            showAlertDialog(uiState.messageId)
+                        }
 
-                is UiState.Success -> {
-                    binding.progressBar.visibility = View.GONE
-                    updateView(uiState.data)
+                        is UiState.Success -> {
+                            binding.progressBar.visibility = View.GONE
+                            updateView(uiState.data)
 
+                        }
+                    }
                 }
             }
+
+
         }
     }
 
