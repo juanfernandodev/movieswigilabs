@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.juanferdev.pruebaingresomovieswigilabs.Movie
 import com.juanferdev.pruebaingresomovieswigilabs.R
 import com.juanferdev.pruebaingresomovieswigilabs.ViewModelFactory
 import com.juanferdev.pruebaingresomovieswigilabs.api.UiState
@@ -18,7 +19,8 @@ import com.juanferdev.pruebaingresomovieswigilabs.ui.detailmovie.MOVIE_KEY
 class MovieListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMovieListBinding
-    private val adapterAllMovies = AllMoviesAdapter()
+    private val adapterAllMovies = MoviesAdapter()
+    private val adapterFavoriteMovies = MoviesAdapter()
     private val movieListViewModel: MovieListViewModel by viewModels {
         ViewModelFactory(this)
     }
@@ -26,7 +28,7 @@ class MovieListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMovieListBinding.inflate(layoutInflater)
-        initRecyclerAllMovies()
+        initRecyclers()
         initObserver()
         setContentView(binding.root)
     }
@@ -36,19 +38,34 @@ class MovieListActivity : AppCompatActivity() {
         movieListViewModel.getAllMovies()
     }
 
-    private fun initRecyclerAllMovies() {
+    private fun initRecyclers() {
         adapterAllMovies.setOnItemClickListener { movie ->
-            val intent = Intent(this, DetailMovieActivity::class.java)
-            intent.putExtra(MOVIE_KEY, movie)
-            startActivity(intent)
+            openDetailMovieActivity(movie)
+        }
+        adapterFavoriteMovies.setOnItemClickListener { movie ->
+            openDetailMovieActivity(movie)
         }
 
-        val recycler = binding.recycleAllMovies
-        recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        recycler.adapter = adapterAllMovies
-        recycler.addItemDecoration(
+        val marginItemDecoration =
             MarginItemDecoration(resources.getDimensionPixelSize(R.dimen._8dp))
-        )
+
+        val recyclerAllMovies = binding.recycleAllMovies
+        recyclerAllMovies.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recyclerAllMovies.adapter = adapterAllMovies
+        recyclerAllMovies.addItemDecoration(marginItemDecoration)
+
+        val recyclerFavoriteMovies = binding.recycleYourFavorites
+        recyclerFavoriteMovies.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recyclerFavoriteMovies.adapter = adapterFavoriteMovies
+        recyclerFavoriteMovies.addItemDecoration(marginItemDecoration)
+    }
+
+    private fun openDetailMovieActivity(movie: Movie) {
+        val intent = Intent(this, DetailMovieActivity::class.java)
+        intent.putExtra(MOVIE_KEY, movie)
+        startActivity(intent)
     }
 
     private fun initObserver() {
@@ -65,11 +82,17 @@ class MovieListActivity : AppCompatActivity() {
 
                 is UiState.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    adapterAllMovies.submitList(uiState.data)
+                    updateView(uiState.data)
+
                 }
             }
-
         }
+    }
+
+    private fun updateView(movies: List<Movie>) {
+        adapterAllMovies.submitList(movies.filter { it.isFavorite.not() })
+        adapterFavoriteMovies.submitList(movies.filter { it.isFavorite })
+
     }
 
     private fun showAlertDialog(messageId: Int) {

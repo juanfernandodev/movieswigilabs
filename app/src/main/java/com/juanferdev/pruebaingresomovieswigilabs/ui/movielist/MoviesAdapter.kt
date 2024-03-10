@@ -10,7 +10,7 @@ import com.juanferdev.pruebaingresomovieswigilabs.Movie
 import com.juanferdev.pruebaingresomovieswigilabs.R
 import com.juanferdev.pruebaingresomovieswigilabs.databinding.ItemMovieBinding
 
-class AllMoviesAdapter : ListAdapter<Movie, AllMoviesAdapter.DogViewHolder>(DiffCallback) {
+class MoviesAdapter : ListAdapter<Movie, MoviesAdapter.DogViewHolder>(DiffCallback) {
 
     companion object DiffCallback : DiffUtil.ItemCallback<Movie>() {
         override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
