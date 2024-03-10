@@ -21,9 +21,9 @@ class MoviesRepository @Inject constructor(
     private val dispatcherIO: CoroutineDispatcher,
     private val apiService: ApiService,
     private val movieDAO: MovieDAO
-) {
+) : MoviesRepositoryContract {
 
-    val getMoviesFlow: Flow<UiState<List<Movie>>> = flow {
+    override val getMoviesFlow: Flow<UiState<List<Movie>>> = flow {
         when (val allMoviesLocalResponse = getLocalMovies()) {
             is UiState.Error -> {
                 emit(allMoviesLocalResponse)
@@ -64,7 +64,7 @@ class MoviesRepository @Inject constructor(
         movieDAO.insertMovies(movieEntityList)
     }
 
-    suspend fun updateMovie(movie: MovieEntity): UiState<Movie> {
+    override suspend fun updateMovie(movie: MovieEntity): UiState<Movie> {
         return withContext(dispatcherIO) {
             try {
                 movieDAO.updateMovie(movie)
