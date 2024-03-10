@@ -8,9 +8,13 @@ import com.juanferdev.pruebaingresomovieswigilabs.Movie
 import com.juanferdev.pruebaingresomovieswigilabs.MovieMapper
 import com.juanferdev.pruebaingresomovieswigilabs.api.UiState
 import com.juanferdev.pruebaingresomovieswigilabs.ui.movielist.MoviesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.launch
 
-class DetailMovieViewModel(private val repository: MoviesRepository) : ViewModel() {
+@HiltViewModel
+class DetailMovieViewModel @Inject constructor(private val repository: MoviesRepository) :
+    ViewModel() {
 
     private var _uiState: MutableLiveData<UiState<Movie>> = MutableLiveData()
     val uiState: LiveData<UiState<Movie>>

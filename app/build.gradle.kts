@@ -52,7 +52,7 @@ dependencies {
     val materialDesignVersion = "1.11.0"
     val constraintLayoutVersion = "2.1.4"
     val roomVersion = "2.6.1"
-    val hiltVersion = "2.44"
+    val hiltVersion = "2.50"
     implementation("androidx.core:core-ktx:$coreVersion")
     implementation("androidx.appcompat:appcompat:$appCompactVersion")
     implementation("com.google.android.material:material:$materialDesignVersion")
@@ -79,4 +79,9 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

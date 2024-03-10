@@ -7,9 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.juanferdev.pruebaingresomovieswigilabs.Movie
 import com.juanferdev.pruebaingresomovieswigilabs.MovieMapper
 import com.juanferdev.pruebaingresomovieswigilabs.api.UiState
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.launch
 
-class MovieListViewModel(
+@HiltViewModel
+class MovieListViewModel @Inject constructor(
     private val moviesRepository: MoviesRepository
 ) : ViewModel() {
 

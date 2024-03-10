@@ -10,19 +10,18 @@ import androidx.appcompat.content.res.AppCompatResources
 import coil.load
 import com.juanferdev.pruebaingresomovieswigilabs.Movie
 import com.juanferdev.pruebaingresomovieswigilabs.R
-import com.juanferdev.pruebaingresomovieswigilabs.ViewModelFactory
 import com.juanferdev.pruebaingresomovieswigilabs.api.UiState
 import com.juanferdev.pruebaingresomovieswigilabs.databinding.ActivityDetailMovieBinding
 import com.juanferdev.pruebaingresomovieswigilabs.utils.parcelable
+import dagger.hilt.android.AndroidEntryPoint
 
 const val MOVIE_KEY = "MOVIE_KEY"
 
+@AndroidEntryPoint
 class DetailMovieActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailMovieBinding
-    private val detailMovieViewModel: DetailMovieViewModel by viewModels {
-        ViewModelFactory(this)
-    }
+    private val detailMovieViewModel: DetailMovieViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

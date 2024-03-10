@@ -9,21 +9,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.juanferdev.pruebaingresomovieswigilabs.Movie
 import com.juanferdev.pruebaingresomovieswigilabs.R
-import com.juanferdev.pruebaingresomovieswigilabs.ViewModelFactory
 import com.juanferdev.pruebaingresomovieswigilabs.api.UiState
 import com.juanferdev.pruebaingresomovieswigilabs.databinding.ActivityMovieListBinding
 import com.juanferdev.pruebaingresomovieswigilabs.ui.detailmovie.DetailMovieActivity
 import com.juanferdev.pruebaingresomovieswigilabs.ui.detailmovie.MOVIE_KEY
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MovieListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMovieListBinding
     private val adapterAllMovies = MoviesAdapter(this)
     private val adapterFavoriteMovies = MoviesAdapter(this)
-    private val movieListViewModel: MovieListViewModel by viewModels {
-        ViewModelFactory(this)
-    }
+    private val movieListViewModel: MovieListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

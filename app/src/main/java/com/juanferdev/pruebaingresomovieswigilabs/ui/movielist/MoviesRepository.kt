@@ -1,24 +1,24 @@
 package com.juanferdev.pruebaingresomovieswigilabs.ui.movielist
 
-import android.content.Context
 import android.util.Log
 import com.juanferdev.pruebaingresomovieswigilabs.Movie
 import com.juanferdev.pruebaingresomovieswigilabs.R
-import com.juanferdev.pruebaingresomovieswigilabs.api.MoviesApi
+import com.juanferdev.pruebaingresomovieswigilabs.api.ApiService
 import com.juanferdev.pruebaingresomovieswigilabs.api.UiState
 import com.juanferdev.pruebaingresomovieswigilabs.api.dtos.MovieDTO
 import com.juanferdev.pruebaingresomovieswigilabs.api.dtos.MovieDTOMapper
 import com.juanferdev.pruebaingresomovieswigilabs.api.makeNetworkCall
+import com.juanferdev.pruebaingresomovieswigilabs.localstore.MovieDAO
 import com.juanferdev.pruebaingresomovieswigilabs.localstore.MovieEntity
 import com.juanferdev.pruebaingresomovieswigilabs.localstore.MovieEntityMapper
-import com.juanferdev.pruebaingresomovieswigilabs.localstore.MoviesDataBase
+import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class MoviesRepository(
-    private val context: Context,
-    private val dispatcherIO: CoroutineDispatcher = Dispatchers.IO
+class MoviesRepository @Inject constructor(
+    private val dispatcherIO: CoroutineDispatcher,
+    private val apiService: ApiService,
+    private val movieDAO: MovieDAO
 ) {
 
     suspend fun getMovies(): UiState<List<Movie>> {
@@ -43,7 +43,7 @@ class MoviesRepository(
 
     private suspend fun getLocalMovies(): UiState<List<Movie>> {
         return try {
-            val localMoviesEntity = MoviesDataBase.instance(context).moviesDAO().getAllMovies()
+            val localMoviesEntity = movieDAO.getAllMovies()
             UiState.Success(MovieEntityMapper().fromMovieEntityListToMovieList(localMoviesEntity))
         } catch (e: Exception) {
             Log.i("Error", e.message ?: String())
@@ -53,7 +53,7 @@ class MoviesRepository(
 
     private suspend fun getApiMovies(): UiState<List<Movie>> {
         return makeNetworkCall {
-            val movieListResponse = MoviesApi.retrofitService.getAllMovies()
+            val movieListResponse = apiService.getAllMovies()
             val movieListDTO = movieListResponse.movies
             insertMoviesLocally(movieListDTO)
             MovieDTOMapper().fromMovieDTOListToMovieModelList(movieListDTO)
@@ -63,14 +63,14 @@ class MoviesRepository(
     private suspend fun insertMoviesLocally(movieListDTO: List<MovieDTO>) {
         withContext(dispatcherIO) {
             val movieEntityList = MovieDTOMapper().fromMovieDTOListToMovieEntityList(movieListDTO)
-            MoviesDataBase.instance(context).moviesDAO().insertMovies(movieEntityList)
+            movieDAO.insertMovies(movieEntityList)
         }
     }
 
     suspend fun updateMovie(movie: MovieEntity): UiState<Movie> {
         return withContext(dispatcherIO) {
             try {
-                MoviesDataBase.instance(context).moviesDAO().updateMovie(movie)
+                movieDAO.updateMovie(movie)
                 val movieUpdate = MovieEntityMapper().fromMovieEntityToMovie(movie)
                 UiState.Success(movieUpdate)
             } catch (e: Exception) {
