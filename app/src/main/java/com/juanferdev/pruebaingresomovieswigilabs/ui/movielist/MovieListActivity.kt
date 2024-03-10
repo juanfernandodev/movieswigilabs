@@ -19,8 +19,8 @@ import com.juanferdev.pruebaingresomovieswigilabs.ui.detailmovie.MOVIE_KEY
 class MovieListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMovieListBinding
-    private val adapterAllMovies = MoviesAdapter()
-    private val adapterFavoriteMovies = MoviesAdapter()
+    private val adapterAllMovies = MoviesAdapter(this)
+    private val adapterFavoriteMovies = MoviesAdapter(this)
     private val movieListViewModel: MovieListViewModel by viewModels {
         ViewModelFactory(this)
     }
@@ -46,20 +46,33 @@ class MovieListActivity : AppCompatActivity() {
             openDetailMovieActivity(movie)
         }
 
-        val marginItemDecoration =
-            MarginItemDecoration(resources.getDimensionPixelSize(R.dimen._8dp))
+        adapterAllMovies.setOnFavoriteClickListener { movie ->
+            movieListViewModel.updateMovie(movie)
+        }
+        adapterFavoriteMovies.setOnFavoriteClickListener { movie ->
+            movieListViewModel.updateMovie(movie)
+        }
+
 
         val recyclerAllMovies = binding.recycleAllMovies
         recyclerAllMovies.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recyclerAllMovies.addItemDecoration(MarginItemDecoration(resources.getDimensionPixelSize(R.dimen._8dp)))
         recyclerAllMovies.adapter = adapterAllMovies
-        recyclerAllMovies.addItemDecoration(marginItemDecoration)
+
 
         val recyclerFavoriteMovies = binding.recycleYourFavorites
         recyclerFavoriteMovies.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recyclerFavoriteMovies.addItemDecoration(
+            MarginItemDecoration(
+                resources.getDimensionPixelSize(
+                    R.dimen._8dp
+                )
+            )
+        )
         recyclerFavoriteMovies.adapter = adapterFavoriteMovies
-        recyclerFavoriteMovies.addItemDecoration(marginItemDecoration)
+
     }
 
     private fun openDetailMovieActivity(movie: Movie) {

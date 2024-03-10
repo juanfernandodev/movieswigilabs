@@ -5,40 +5,69 @@
 
     <data>
 
+        <variable
+            name="movie"
+            type="com.juanferdev.pruebaingresomovieswigilabs.Movie" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container_item_movie"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
 
-        <ImageView
-            android:id="@+id/image_movie"
-            android:layout_width="180dp"
-            android:layout_height="250dp"
-            android:contentDescription="@string/image_of_the_movie"
-            tools:src="@drawable/descarga"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        app:cardCornerRadius="@dimen/_8dp">
 
-        <TextView
-            android:id="@+id/title_movie"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_item_movie"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/image_movie"
-            android:textStyle="bold"
-            tools:text="American History X" />
+            android:background="@android:color/transparent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/description_movie"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_4dp"
-            app:layout_constraintStart_toStartOf="@id/image_movie"
-            app:layout_constraintEnd_toEndOf="@id/image_movie"
-            app:layout_constraintTop_toBottomOf="@id/title_movie"
-            tools:text="In a world where superpowered people are heavily policed by robots, an ex-con teams up with a drug lord he despises to protect a teen from a corrupt cop." />
+            <ImageView
+                android:id="@+id/image_movie"
+                android:layout_width="180dp"
+                android:scaleType="fitXY"
+                android:layout_height="250dp"
+                android:contentDescription="@string/image_of_the_movie"
+                tools:src="@drawable/descarga"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/button_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_8dp"
+                android:contentDescription="@string/save_as_favorite"
+                android:src="@drawable/baseline_no_favorite"
+                app:layout_constraintBottom_toBottomOf="@id/image_movie"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/title_movie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{movie.title}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_movie"
+                android:textStyle="bold"
+                tools:text="American History X" />
+
+            <TextView
+                android:id="@+id/description_movie"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:text="@{movie.overview}"
+                android:layout_marginTop="@dimen/_4dp"
+                app:layout_constraintStart_toStartOf="@id/image_movie"
+                app:layout_constraintEnd_toEndOf="@id/image_movie"
+                app:layout_constraintTop_toBottomOf="@id/title_movie"
+                tools:text="In a world where superpowered people are heavily policed by robots, an ex-con teams up with a drug lord he despises to protect a teen from a corrupt cop." />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
 </layout>
