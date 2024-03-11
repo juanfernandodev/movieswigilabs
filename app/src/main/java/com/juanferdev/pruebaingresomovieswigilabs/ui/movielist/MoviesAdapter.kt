@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.juanferdev.pruebaingresomovieswigilabs.Movie
 import com.juanferdev.pruebaingresomovieswigilabs.R
+import com.juanferdev.pruebaingresomovieswigilabs.api.IMAGES_BASE_URL
 import com.juanferdev.pruebaingresomovieswigilabs.databinding.ItemMovieBinding
 
 class MoviesAdapter(private val context: Context) :
@@ -52,7 +53,7 @@ class MoviesAdapter(private val context: Context) :
 
         fun bind(movie: Movie) {
             binding.movie = movie
-            binding.imageMovie.load(R.drawable.descarga)
+            binding.imageMovie.load(IMAGES_BASE_URL.plus(movie.posterPath))
             binding.buttonFavorite.background = if (movie.isFavorite) {
                 AppCompatResources.getDrawable(context, R.drawable.baseline_favorite)
             } else {

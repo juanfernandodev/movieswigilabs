@@ -10,6 +10,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import coil.load
 import com.juanferdev.pruebaingresomovieswigilabs.Movie
 import com.juanferdev.pruebaingresomovieswigilabs.R
+import com.juanferdev.pruebaingresomovieswigilabs.api.IMAGES_BASE_URL
 import com.juanferdev.pruebaingresomovieswigilabs.api.UiState
 import com.juanferdev.pruebaingresomovieswigilabs.databinding.ActivityDetailMovieBinding
 import com.juanferdev.pruebaingresomovieswigilabs.utils.parcelable
@@ -81,7 +82,6 @@ class DetailMovieActivity : AppCompatActivity() {
         } else {
             AppCompatResources.getDrawable(this, R.drawable.baseline_no_favorite)
         }
-        //binding.imageMovieDetail.load(movie.posterPath)
-        binding.imageMovieDetail.load(R.drawable.descarga)
+        binding.imageMovieDetail.load(IMAGES_BASE_URL.plus(movie.posterPath))
     }
 }
