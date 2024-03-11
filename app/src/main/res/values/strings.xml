@@ -9,4 +9,7 @@
     <string name="movie_s_image">Movie\'s Image</string>
     <string name="error_showing_movie_don_t_found">Error showing movie, don\'t found</string>
     <string name="save_as_favorite">Save as Favorite</string>
+    <string name="votes">Votes:</string>
+    <string name="popularity">Popularity:</string>
+    <string name="release_date">Release Date:</string>
 </resources>

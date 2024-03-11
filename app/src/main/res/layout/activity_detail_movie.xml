@@ -36,6 +36,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="16dp"
             tools:src="@drawable/descarga" />
 
         <ImageView
@@ -50,48 +51,86 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
+            style="@style/titleDetailMovie"
+            android:id="@+id/title_vote_average"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/votes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_movie_detail" />
+
+        <TextView
+            style="@style/textDetailMovie"
             android:id="@+id/text_vote_average"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8dp"
             android:text="@{Double.toString(movie.voteAverage)}"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/title_vote_average"
             app:layout_constraintTop_toBottomOf="@id/image_movie_detail"
             tools:text="5.7" />
 
         <TextView
-            android:id="@+id/text_popularity"
+            style="@style/titleDetailMovie"
+            android:id="@+id/title_popularity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{Double.toString(movie.popularity)}"
+            android:text="@string/popularity"
+            android:layout_marginStart="@dimen/_8dp"
             app:layout_constraintStart_toEndOf="@id/text_vote_average"
+            app:layout_constraintTop_toBottomOf="@id/image_movie_detail" />
+
+        <TextView
+            android:id="@+id/text_popularity"
+            style="@style/textDetailMovie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8dp"
+            android:text="@{Double.toString(movie.popularity)}"
+            app:layout_constraintStart_toEndOf="@id/title_popularity"
             app:layout_constraintTop_toBottomOf="@id/image_movie_detail"
             tools:text="1511.655" />
 
         <TextView
-            android:id="@+id/text_release_date"
+            style="@style/titleDetailMovie"
+            android:id="@+id/title_release_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/release_date"
+            android:layout_marginEnd="@dimen/_8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_vote_average" />
+
+        <TextView
+            android:id="@+id/text_release_date"
+            style="@style/textDetailMovie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8dp"
             android:text="@{movie.releaseDate}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/image_movie_detail"
+            app:layout_constraintStart_toEndOf="@id/title_release_date"
+            app:layout_constraintTop_toTopOf="@id/title_release_date"
             tools:text="2024-01-18" />
 
         <TextView
+            style="@style/titleDetailMovie"
             android:id="@+id/title_movie_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{movie.title}"
             android:textStyle="bold"
+            android:textSize="@dimen/_28sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_release_date"
             tools:text="American History X" />
 
         <TextView
             android:id="@+id/overview_movie_detail"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4dp"
             android:text="@{movie.overview}"
+            android:textSize="@dimen/_20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_movie_detail"
             tools:text="In a world where superpowered people are heavily policed by robots, an ex-con teams up with a drug lord he despises to protect a teen from a corrupt cop." />
