@@ -7,13 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.juanferdev.pruebaingresomovieswigilabs.Movie
 import com.juanferdev.pruebaingresomovieswigilabs.MovieMapper
 import com.juanferdev.pruebaingresomovieswigilabs.api.UiState
-import com.juanferdev.pruebaingresomovieswigilabs.ui.movielist.MoviesRepository
+import com.juanferdev.pruebaingresomovieswigilabs.ui.movielist.MoviesRepositoryContract
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 
 @HiltViewModel
-class DetailMovieViewModel @Inject constructor(private val repository: MoviesRepository) :
+class DetailMovieViewModel @Inject constructor(private val repository: MoviesRepositoryContract) :
     ViewModel() {
 
     private var _uiState: MutableLiveData<UiState<Movie>> = MutableLiveData()
@@ -23,7 +23,8 @@ class DetailMovieViewModel @Inject constructor(private val repository: MoviesRep
     fun updateMovie(movie: Movie) {
         viewModelScope.launch {
             val movieEntity = MovieMapper().fromMovieToMovieEntity(movie)
-            _uiState.value = repository.updateMovie(movieEntity)
+            val uiState = repository.updateMovie(movieEntity)
+            _uiState.value = uiState
         }
     }
 

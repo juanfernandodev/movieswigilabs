@@ -1,5 +1,6 @@
 package com.juanferdev.pruebaingresomovieswigilabs
 
+import com.juanferdev.pruebaingresomovieswigilabs.MoviesMock.movieToUpdate
 import com.juanferdev.pruebaingresomovieswigilabs.api.UiState
 import com.juanferdev.pruebaingresomovieswigilabs.ui.movielist.MovieListViewModel
 import kotlinx.coroutines.test.runTest
@@ -12,7 +13,7 @@ class MovieListViewModelTest {
     val mainDispatcherRule = MainDispatcherRule()
 
     private val moviesRepositoryWithMoviesMock = MoviesRepositoryWithMoviesMock()
-    private val moviesRepositoryWithErrorMock = MoviesRepositoryWithErrosMock()
+    private val moviesRepositoryWithErrorMock = MoviesRepositoryWithErrorMock()
 
     @Test
     fun getAllMoviesWhenIsNotEmptySoIsSuccess() = runTest {
@@ -38,16 +39,6 @@ class MovieListViewModelTest {
 
     @Test
     fun updateMovieWhenAllIsGoodSoTheMovieListContainsTheUpdatedMovie() = runTest {
-        val movieToUpdate = Movie(
-            1,
-            "Wolverine",
-            "overview",
-            posterPath = "posterpath",
-            voteAverage = 2.3,
-            popularity = 5.0,
-            releaseDate = "2024-03-10",
-            isFavorite = false
-        )
         val movieListViewModel = MovieListViewModel(moviesRepositoryWithMoviesMock)
         movieListViewModel.updateMovie(movieToUpdate)
         val updatedMovieList = (movieListViewModel.uiStateFlow.value as UiState.Success).data

@@ -25,4 +25,15 @@ object MoviesMock {
             isFavorite = false
         )
     )
+
+    val movieToUpdate = Movie(
+        1,
+        "Wolverine",
+        "overview",
+        posterPath = "posterpath",
+        voteAverage = 2.3,
+        popularity = 5.0,
+        releaseDate = "2024-03-10",
+        isFavorite = false
+    )
 }

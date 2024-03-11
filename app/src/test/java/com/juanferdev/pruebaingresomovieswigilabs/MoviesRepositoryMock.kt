@@ -23,7 +23,7 @@ class MoviesRepositoryWithMoviesMock : MoviesRepositoryContract {
 
 }
 
-class MoviesRepositoryWithErrosMock : MoviesRepositoryContract {
+class MoviesRepositoryWithErrorMock : MoviesRepositoryContract {
 
     override val getMoviesFlow: Flow<UiState<List<Movie>>> = flow {
         emit(UiState.Error(R.string.there_was_error))
