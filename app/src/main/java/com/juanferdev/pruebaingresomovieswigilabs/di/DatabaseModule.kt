@@ -2,8 +2,8 @@ package com.juanferdev.pruebaingresomovieswigilabs.di
 
 import android.content.Context
 import androidx.room.Room
-import com.juanferdev.pruebaingresomovieswigilabs.localstore.MovieDAO
-import com.juanferdev.pruebaingresomovieswigilabs.localstore.MoviesDataBase
+import com.juanferdev.pruebaingresomovieswigilabs.core.datastore.MovieDAO
+import com.juanferdev.pruebaingresomovieswigilabs.core.datastore.MoviesDataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

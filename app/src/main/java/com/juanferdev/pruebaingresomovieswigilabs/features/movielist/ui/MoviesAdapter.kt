@@ -1,4 +1,4 @@
-package com.juanferdev.pruebaingresomovieswigilabs.ui.movielist
+package com.juanferdev.pruebaingresomovieswigilabs.features.movielist.ui
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.juanferdev.pruebaingresomovieswigilabs.Movie
 import com.juanferdev.pruebaingresomovieswigilabs.R
-import com.juanferdev.pruebaingresomovieswigilabs.api.IMAGES_BASE_URL
+import com.juanferdev.pruebaingresomovieswigilabs.core.models.Movie
+import com.juanferdev.pruebaingresomovieswigilabs.core.network.IMAGES_BASE_URL
 import com.juanferdev.pruebaingresomovieswigilabs.databinding.ItemMovieBinding
 
 class MoviesAdapter(private val context: Context) :

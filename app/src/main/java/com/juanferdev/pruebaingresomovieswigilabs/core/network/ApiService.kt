@@ -1,6 +1,6 @@
-package com.juanferdev.pruebaingresomovieswigilabs.api
+package com.juanferdev.pruebaingresomovieswigilabs.core.network
 
-import com.juanferdev.pruebaingresomovieswigilabs.api.response.MovieListApiResponse
+import com.juanferdev.pruebaingresomovieswigilabs.core.network.response.MovieListApiResponse
 import retrofit2.http.GET
 
 const val BASE_URL = "https://api.themoviedb.org/3/"

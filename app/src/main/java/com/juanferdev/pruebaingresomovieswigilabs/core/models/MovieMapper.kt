@@ -1,6 +1,6 @@
-package com.juanferdev.pruebaingresomovieswigilabs
+package com.juanferdev.pruebaingresomovieswigilabs.core.models
 
-import com.juanferdev.pruebaingresomovieswigilabs.localstore.MovieEntity
+import com.juanferdev.pruebaingresomovieswigilabs.core.datastore.MovieEntity
 
 class MovieMapper {
 

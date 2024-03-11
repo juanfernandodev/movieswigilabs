@@ -1,7 +1,8 @@
 package com.juanferdev.pruebaingresomovieswigilabs
 
-import com.juanferdev.pruebaingresomovieswigilabs.api.dtos.MovieDTO
-import com.juanferdev.pruebaingresomovieswigilabs.localstore.MovieEntity
+import com.juanferdev.pruebaingresomovieswigilabs.core.datastore.MovieEntity
+import com.juanferdev.pruebaingresomovieswigilabs.core.models.Movie
+import com.juanferdev.pruebaingresomovieswigilabs.core.network.dtos.MovieDTO
 
 object MoviesMock {
     val movieMock = Movie(

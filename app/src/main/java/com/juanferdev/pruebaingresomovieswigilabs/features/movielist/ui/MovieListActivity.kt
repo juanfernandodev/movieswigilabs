@@ -1,4 +1,4 @@
-package com.juanferdev.pruebaingresomovieswigilabs.ui.movielist
+package com.juanferdev.pruebaingresomovieswigilabs.features.movielist.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,12 +10,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.juanferdev.pruebaingresomovieswigilabs.Movie
 import com.juanferdev.pruebaingresomovieswigilabs.R
-import com.juanferdev.pruebaingresomovieswigilabs.api.UiState
+import com.juanferdev.pruebaingresomovieswigilabs.core.models.Movie
 import com.juanferdev.pruebaingresomovieswigilabs.databinding.ActivityMovieListBinding
-import com.juanferdev.pruebaingresomovieswigilabs.ui.detailmovie.DetailMovieActivity
-import com.juanferdev.pruebaingresomovieswigilabs.ui.detailmovie.MOVIE_KEY
+import com.juanferdev.pruebaingresomovieswigilabs.features.UiState
+import com.juanferdev.pruebaingresomovieswigilabs.features.detailmovie.ui.DetailMovieActivity
+import com.juanferdev.pruebaingresomovieswigilabs.features.detailmovie.ui.MOVIE_KEY
+import com.juanferdev.pruebaingresomovieswigilabs.features.movielist.stateholder.MovieListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

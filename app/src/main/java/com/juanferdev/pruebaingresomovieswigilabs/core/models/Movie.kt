@@ -1,4 +1,4 @@
-package com.juanferdev.pruebaingresomovieswigilabs
+package com.juanferdev.pruebaingresomovieswigilabs.core.models
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

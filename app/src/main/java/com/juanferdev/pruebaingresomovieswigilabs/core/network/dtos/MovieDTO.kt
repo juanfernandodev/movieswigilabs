@@ -1,4 +1,4 @@
-package com.juanferdev.pruebaingresomovieswigilabs.api.dtos
+package com.juanferdev.pruebaingresomovieswigilabs.core.network.dtos
 
 import com.squareup.moshi.Json
 

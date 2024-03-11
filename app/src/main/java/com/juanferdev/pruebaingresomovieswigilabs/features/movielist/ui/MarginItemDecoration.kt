@@ -1,4 +1,4 @@
-package com.juanferdev.pruebaingresomovieswigilabs.ui.movielist
+package com.juanferdev.pruebaingresomovieswigilabs.features.movielist.ui
 
 import android.graphics.Rect
 import android.view.View

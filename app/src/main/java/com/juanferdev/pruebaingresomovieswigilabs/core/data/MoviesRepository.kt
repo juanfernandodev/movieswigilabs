@@ -1,15 +1,15 @@
-package com.juanferdev.pruebaingresomovieswigilabs.ui.movielist
+package com.juanferdev.pruebaingresomovieswigilabs.core.data
 
-import com.juanferdev.pruebaingresomovieswigilabs.Movie
 import com.juanferdev.pruebaingresomovieswigilabs.R
-import com.juanferdev.pruebaingresomovieswigilabs.api.ApiService
-import com.juanferdev.pruebaingresomovieswigilabs.api.UiState
-import com.juanferdev.pruebaingresomovieswigilabs.api.dtos.MovieDTO
-import com.juanferdev.pruebaingresomovieswigilabs.api.dtos.MovieDTOMapper
-import com.juanferdev.pruebaingresomovieswigilabs.api.makeNetworkCall
-import com.juanferdev.pruebaingresomovieswigilabs.localstore.MovieDAO
-import com.juanferdev.pruebaingresomovieswigilabs.localstore.MovieEntity
-import com.juanferdev.pruebaingresomovieswigilabs.localstore.MovieEntityMapper
+import com.juanferdev.pruebaingresomovieswigilabs.core.datastore.MovieDAO
+import com.juanferdev.pruebaingresomovieswigilabs.core.datastore.MovieEntity
+import com.juanferdev.pruebaingresomovieswigilabs.core.datastore.MovieEntityMapper
+import com.juanferdev.pruebaingresomovieswigilabs.core.models.Movie
+import com.juanferdev.pruebaingresomovieswigilabs.core.network.ApiService
+import com.juanferdev.pruebaingresomovieswigilabs.core.network.dtos.MovieDTO
+import com.juanferdev.pruebaingresomovieswigilabs.core.network.dtos.MovieDTOMapper
+import com.juanferdev.pruebaingresomovieswigilabs.core.network.makeNetworkCall
+import com.juanferdev.pruebaingresomovieswigilabs.features.UiState
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.flow

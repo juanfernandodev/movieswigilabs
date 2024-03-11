@@ -1,4 +1,4 @@
-package com.juanferdev.pruebaingresomovieswigilabs.localstore
+package com.juanferdev.pruebaingresomovieswigilabs.core.datastore
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

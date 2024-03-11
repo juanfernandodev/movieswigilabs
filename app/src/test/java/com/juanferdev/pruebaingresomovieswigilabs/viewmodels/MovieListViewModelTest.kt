@@ -6,10 +6,10 @@ import com.juanferdev.pruebaingresomovieswigilabs.MoviesMock.movieMock
 import com.juanferdev.pruebaingresomovieswigilabs.MoviesMock.movieToUpdateEntityMock
 import com.juanferdev.pruebaingresomovieswigilabs.MoviesMock.movieToUpdateMock
 import com.juanferdev.pruebaingresomovieswigilabs.R
-import com.juanferdev.pruebaingresomovieswigilabs.api.UiState
-import com.juanferdev.pruebaingresomovieswigilabs.localstore.MovieEntityMapper
-import com.juanferdev.pruebaingresomovieswigilabs.ui.movielist.MovieListViewModel
-import com.juanferdev.pruebaingresomovieswigilabs.ui.movielist.MoviesRepositoryContract
+import com.juanferdev.pruebaingresomovieswigilabs.core.data.MoviesRepositoryContract
+import com.juanferdev.pruebaingresomovieswigilabs.core.datastore.MovieEntityMapper
+import com.juanferdev.pruebaingresomovieswigilabs.features.UiState
+import com.juanferdev.pruebaingresomovieswigilabs.features.movielist.stateholder.MovieListViewModel
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule

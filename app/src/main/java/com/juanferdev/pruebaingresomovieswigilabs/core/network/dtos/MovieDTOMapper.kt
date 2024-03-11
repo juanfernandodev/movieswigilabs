@@ -1,7 +1,7 @@
-package com.juanferdev.pruebaingresomovieswigilabs.api.dtos
+package com.juanferdev.pruebaingresomovieswigilabs.core.network.dtos
 
-import com.juanferdev.pruebaingresomovieswigilabs.Movie
-import com.juanferdev.pruebaingresomovieswigilabs.localstore.MovieEntity
+import com.juanferdev.pruebaingresomovieswigilabs.core.datastore.MovieEntity
+import com.juanferdev.pruebaingresomovieswigilabs.core.models.Movie
 
 class MovieDTOMapper {
 

@@ -5,9 +5,9 @@ import com.juanferdev.pruebaingresomovieswigilabs.MainDispatcherRule
 import com.juanferdev.pruebaingresomovieswigilabs.MoviesMock
 import com.juanferdev.pruebaingresomovieswigilabs.MoviesMock.movieMock
 import com.juanferdev.pruebaingresomovieswigilabs.R
-import com.juanferdev.pruebaingresomovieswigilabs.api.UiState
-import com.juanferdev.pruebaingresomovieswigilabs.ui.detailmovie.DetailMovieViewModel
-import com.juanferdev.pruebaingresomovieswigilabs.ui.movielist.MoviesRepositoryContract
+import com.juanferdev.pruebaingresomovieswigilabs.core.data.MoviesRepositoryContract
+import com.juanferdev.pruebaingresomovieswigilabs.features.UiState
+import com.juanferdev.pruebaingresomovieswigilabs.features.detailmovie.stateholder.DetailMovieViewModel
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test

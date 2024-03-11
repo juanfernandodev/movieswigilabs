@@ -7,7 +7,7 @@
 
         <variable
             name="movie"
-            type="com.juanferdev.pruebaingresomovieswigilabs.Movie" />
+            type="com.juanferdev.pruebaingresomovieswigilabs.core.models.Movie" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

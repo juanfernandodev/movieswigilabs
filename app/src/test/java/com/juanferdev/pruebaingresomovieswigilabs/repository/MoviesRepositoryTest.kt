@@ -1,9 +1,9 @@
 package com.juanferdev.pruebaingresomovieswigilabs.repository
 
-import com.juanferdev.pruebaingresomovieswigilabs.api.ApiService
-import com.juanferdev.pruebaingresomovieswigilabs.api.UiState
-import com.juanferdev.pruebaingresomovieswigilabs.localstore.MovieDAO
-import com.juanferdev.pruebaingresomovieswigilabs.ui.movielist.MoviesRepository
+import com.juanferdev.pruebaingresomovieswigilabs.core.data.MoviesRepository
+import com.juanferdev.pruebaingresomovieswigilabs.core.datastore.MovieDAO
+import com.juanferdev.pruebaingresomovieswigilabs.core.network.ApiService
+import com.juanferdev.pruebaingresomovieswigilabs.features.UiState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.toList

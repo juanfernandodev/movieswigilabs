@@ -1,7 +1,7 @@
 package com.juanferdev.pruebaingresomovieswigilabs.di
 
-import com.juanferdev.pruebaingresomovieswigilabs.api.ApiService
-import com.juanferdev.pruebaingresomovieswigilabs.api.BASE_URL
+import com.juanferdev.pruebaingresomovieswigilabs.core.network.ApiService
+import com.juanferdev.pruebaingresomovieswigilabs.core.network.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

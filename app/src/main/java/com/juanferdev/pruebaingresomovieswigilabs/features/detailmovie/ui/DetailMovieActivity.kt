@@ -1,4 +1,4 @@
-package com.juanferdev.pruebaingresomovieswigilabs.ui.detailmovie
+package com.juanferdev.pruebaingresomovieswigilabs.features.detailmovie.ui
 
 import android.os.Bundle
 import android.view.View
@@ -8,11 +8,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import coil.load
-import com.juanferdev.pruebaingresomovieswigilabs.Movie
 import com.juanferdev.pruebaingresomovieswigilabs.R
-import com.juanferdev.pruebaingresomovieswigilabs.api.IMAGES_BASE_URL
-import com.juanferdev.pruebaingresomovieswigilabs.api.UiState
+import com.juanferdev.pruebaingresomovieswigilabs.core.models.Movie
+import com.juanferdev.pruebaingresomovieswigilabs.core.network.IMAGES_BASE_URL
 import com.juanferdev.pruebaingresomovieswigilabs.databinding.ActivityDetailMovieBinding
+import com.juanferdev.pruebaingresomovieswigilabs.features.UiState
+import com.juanferdev.pruebaingresomovieswigilabs.features.detailmovie.stateholder.DetailMovieViewModel
 import com.juanferdev.pruebaingresomovieswigilabs.utils.parcelable
 import dagger.hilt.android.AndroidEntryPoint
 

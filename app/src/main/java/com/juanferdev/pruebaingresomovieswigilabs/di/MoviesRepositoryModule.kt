@@ -1,7 +1,7 @@
 package com.juanferdev.pruebaingresomovieswigilabs.di
 
-import com.juanferdev.pruebaingresomovieswigilabs.ui.movielist.MoviesRepository
-import com.juanferdev.pruebaingresomovieswigilabs.ui.movielist.MoviesRepositoryContract
+import com.juanferdev.pruebaingresomovieswigilabs.core.data.MoviesRepository
+import com.juanferdev.pruebaingresomovieswigilabs.core.data.MoviesRepositoryContract
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

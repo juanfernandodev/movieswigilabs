@@ -1,13 +1,13 @@
-package com.juanferdev.pruebaingresomovieswigilabs.ui.detailmovie
+package com.juanferdev.pruebaingresomovieswigilabs.features.detailmovie.stateholder
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.juanferdev.pruebaingresomovieswigilabs.Movie
-import com.juanferdev.pruebaingresomovieswigilabs.MovieMapper
-import com.juanferdev.pruebaingresomovieswigilabs.api.UiState
-import com.juanferdev.pruebaingresomovieswigilabs.ui.movielist.MoviesRepositoryContract
+import com.juanferdev.pruebaingresomovieswigilabs.core.data.MoviesRepositoryContract
+import com.juanferdev.pruebaingresomovieswigilabs.core.models.Movie
+import com.juanferdev.pruebaingresomovieswigilabs.core.models.MovieMapper
+import com.juanferdev.pruebaingresomovieswigilabs.features.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.launch
