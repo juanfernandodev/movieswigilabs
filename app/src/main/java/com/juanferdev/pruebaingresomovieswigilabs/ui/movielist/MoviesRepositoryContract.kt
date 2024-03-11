@@ -8,5 +8,5 @@ import kotlinx.coroutines.flow.Flow
 interface MoviesRepositoryContract {
     val getMoviesFlow: Flow<UiState<List<Movie>>>
 
-    suspend fun updateMovie(movie: MovieEntity): UiState<Movie>
+    suspend fun updateMovie(movieEntityToUpdate: MovieEntity): UiState<Movie>
 }

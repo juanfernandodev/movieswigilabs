@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class MovieListViewModel @Inject constructor(
-    private val moviesRepository: MoviesRepository
+    private val moviesRepository: MoviesRepositoryContract
 ) : ViewModel() {
 
     private var _uiStateFlow = MutableStateFlow<UiState<List<Movie>>>(UiState.Success(emptyList()))

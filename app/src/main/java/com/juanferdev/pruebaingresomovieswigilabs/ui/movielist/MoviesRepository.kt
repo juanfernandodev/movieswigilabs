@@ -64,11 +64,11 @@ class MoviesRepository @Inject constructor(
         movieDAO.insertMovies(movieEntityList)
     }
 
-    override suspend fun updateMovie(movie: MovieEntity): UiState<Movie> {
+    override suspend fun updateMovie(movieEntityToUpdate: MovieEntity): UiState<Movie> {
         return withContext(dispatcherIO) {
             try {
-                movieDAO.updateMovie(movie)
-                val movieUpdate = MovieEntityMapper().fromMovieEntityToMovie(movie)
+                movieDAO.updateMovie(movieEntityToUpdate)
+                val movieUpdate = MovieEntityMapper().fromMovieEntityToMovie(movieEntityToUpdate)
                 UiState.Success(movieUpdate)
             } catch (e: Exception) {
                 UiState.Error(R.string.there_was_error)
