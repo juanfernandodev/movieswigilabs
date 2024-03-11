@@ -42,6 +42,7 @@ android {
 }
 
 dependencies {
+
     val coilVersion = "2.6.0"
     val lifecycleVersion = "2.7.0"
     val activityVersion = "1.8.2"
@@ -53,6 +54,8 @@ dependencies {
     val constraintLayoutVersion = "2.1.4"
     val roomVersion = "2.6.1"
     val hiltVersion = "2.50"
+    val testng = "6.9.6"
+    val kotlinxCoroutines = "1.7.3"
     implementation("androidx.core:core-ktx:$coreVersion")
     implementation("androidx.appcompat:appcompat:$appCompactVersion")
     implementation("com.google.android.material:material:$materialDesignVersion")
@@ -76,9 +79,8 @@ dependencies {
 
 
     testImplementation("junit:junit:$jUnitVersion")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinxCoroutines")
+    testImplementation("org.testng:testng:$testng")
 }
 
 // Allow references to generated code
