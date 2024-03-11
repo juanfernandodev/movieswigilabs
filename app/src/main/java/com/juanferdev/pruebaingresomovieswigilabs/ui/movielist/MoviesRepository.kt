@@ -12,7 +12,6 @@ import com.juanferdev.pruebaingresomovieswigilabs.localstore.MovieEntity
 import com.juanferdev.pruebaingresomovieswigilabs.localstore.MovieEntityMapper
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
@@ -23,7 +22,7 @@ class MoviesRepository @Inject constructor(
     private val movieDAO: MovieDAO
 ) : MoviesRepositoryContract {
 
-    override val getMoviesFlow: Flow<UiState<List<Movie>>> = flow {
+    override val getMoviesFlow = flow {
         when (val allMoviesLocalResponse = getLocalMovies()) {
             is UiState.Error -> {
                 emit(allMoviesLocalResponse)

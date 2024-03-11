@@ -1,7 +1,10 @@
 package com.juanferdev.pruebaingresomovieswigilabs
 
+import com.juanferdev.pruebaingresomovieswigilabs.api.dtos.MovieDTO
+import com.juanferdev.pruebaingresomovieswigilabs.localstore.MovieEntity
+
 object MoviesMock {
-    val movie = Movie(
+    val movieMock = Movie(
         1,
         "Wolverine",
         "overview",
@@ -12,8 +15,8 @@ object MoviesMock {
         isFavorite = false
     )
 
-    val movieList = mutableListOf(
-        movie,
+    val movieListMock = mutableListOf(
+        movieMock,
         Movie(
             2,
             "Wolverine",
@@ -26,7 +29,52 @@ object MoviesMock {
         )
     )
 
-    val movieToUpdate = Movie(
+    val movieDTOListMock = mutableListOf(
+        MovieDTO(
+            1,
+            "Wolverine",
+            "overview",
+            posterPath = "posterpath",
+            voteAverage = 2.3,
+            popularity = 5.0,
+            releaseDate = "2024-03-10"
+        ),
+        MovieDTO(
+            2,
+            "Wolverine",
+            "overview",
+            posterPath = "posterpath",
+            voteAverage = 2.3,
+            popularity = 5.0,
+            releaseDate = "2024-03-10"
+        )
+    )
+
+
+    val moviesEntityListMock = mutableListOf(
+        MovieEntity(
+            1,
+            "Wolverine",
+            "overview",
+            posterPath = "posterpath",
+            voteAverage = 2.3,
+            popularity = 5.0,
+            releaseDate = "2024-03-10",
+            isFavorite = 1
+        ),
+        MovieEntity(
+            2,
+            "Wolverine",
+            "overview",
+            posterPath = "posterpath",
+            voteAverage = 2.3,
+            popularity = 5.0,
+            releaseDate = "2024-03-10",
+            isFavorite = 0
+        )
+    )
+
+    val movieToUpdateMock = Movie(
         1,
         "Wolverine",
         "overview",
@@ -35,5 +83,16 @@ object MoviesMock {
         popularity = 5.0,
         releaseDate = "2024-03-10",
         isFavorite = false
+    )
+
+    val movieToUpdateEntityMock = MovieEntity(
+        1,
+        "Wolverine",
+        "overview",
+        posterPath = "posterpath",
+        voteAverage = 2.3,
+        popularity = 5.0,
+        releaseDate = "2024-03-10",
+        isFavorite = 0
     )
 }
