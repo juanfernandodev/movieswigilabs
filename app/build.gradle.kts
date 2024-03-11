@@ -56,6 +56,7 @@ dependencies {
     val hiltVersion = "2.50"
     val testng = "6.9.6"
     val kotlinxCoroutines = "1.7.3"
+    val coreTesting = "2.2.0"
     implementation("androidx.core:core-ktx:$coreVersion")
     implementation("androidx.appcompat:appcompat:$appCompactVersion")
     implementation("com.google.android.material:material:$materialDesignVersion")
@@ -81,6 +82,7 @@ dependencies {
     testImplementation("junit:junit:$jUnitVersion")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinxCoroutines")
     testImplementation("org.testng:testng:$testng")
+    testImplementation("androidx.arch.core:core-testing:$coreTesting")
 }
 
 // Allow references to generated code
